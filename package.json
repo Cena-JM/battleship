@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/Cena-JM/battleship#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
     "jest": "^24.8.0",
     "webpack": "^4.37.0",
     "webpack-cli": "^3.3.6"
