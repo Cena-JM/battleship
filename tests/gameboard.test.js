@@ -1,10 +1,8 @@
 import { gameboardFactory } from "../src/gameboardFactory";
-import { shipFactory } from "../src/shipFactory";
 
-const ships = { 
-    carrier : shipFactory(5),
-    battleship : shipFactory(4),
-    destroyer : shipFactory(3),
-    submarine : shipFactory(3),
-    patrol : shipFactory(2)
-}
+let ship = {size: 6}
+// let shipCods = gameboardFactory();
+// shipCods.placeShip(ship);
+test('Game board correctly placed ship', () => {
+  expect(gameboardFactory.placeShip(ship)).toBe(true);
+});

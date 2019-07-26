@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1564066883064" clover="3.2.0">
-  <project timestamp="1564066883064" name="All files">
-    <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="9" coveredelements="9" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
-    <file name="shipFactory.js" path="/Users/pc/Documents/GitHub/battleship/src/shipFactory.js">
-      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+<coverage generated="1564107816700" clover="3.2.0">
+  <project timestamp="1564107816701" name="All files">
+    <metrics statements="24" coveredstatements="3" conditionals="18" coveredconditionals="0" methods="3" coveredmethods="0" elements="45" coveredelements="3" complexity="0" loc="24" ncloc="24" packages="1" files="2" classes="2"/>
+    <file name="gameboardFactory.js" path="/home/cjmbytes/Code/Projects/microver-projects/JavaScript/battleship/src/gameboardFactory.js">
+      <metrics statements="20" coveredstatements="1" conditionals="18" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="41" count="1" type="stmt"/>
+      <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="43" count="0" type="stmt"/>
+      <line num="44" count="0" type="stmt"/>
+      <line num="46" count="0" type="stmt"/>
+      <line num="47" count="0" type="stmt"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="50" count="0" type="stmt"/>
+      <line num="52" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="55" count="0" type="stmt"/>
+      <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="58" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="66" count="0" type="stmt"/>
+    </file>
+    <file name="selectRandom.js" path="/home/cjmbytes/Code/Projects/microver-projects/JavaScript/battleship/src/selectRandom.js">
+      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="2" count="3" type="stmt"/>
-      <line num="3" count="3" type="stmt"/>
-      <line num="4" count="3" type="stmt"/>
-      <line num="7" count="3" type="stmt"/>
-      <line num="9" count="3" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
     </file>
   </project>
 </coverage>

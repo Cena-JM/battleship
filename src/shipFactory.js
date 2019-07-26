@@ -1,4 +1,5 @@
 const shipFactory = (length) => {
+  const coordinates = [];
   const hitCoords = [];
   const hit = (coord) => {
     hitCoords.push(coord);
@@ -7,6 +8,7 @@ const shipFactory = (length) => {
   const isSunk = () => hitCoords.length === length;
 
   return {
+    coordinates,
     length,
     hit,
     isSunk,
