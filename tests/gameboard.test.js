@@ -31,3 +31,25 @@ test('ships can\'t be placed out of bounds', () => {
 
   expect(newGame.placeShip(ship, [0, 7], 'x')).not.toContainEqual([0, 7]);
 });
+
+test('ships can\'t overlap on the board and both ships are on the board', () => {
+  const newGame = gameboardFactory();
+  const shipOne = {
+    length: 4,
+    hitCoords: [],
+    coordinates: [],
+  };
+
+  const shipTwo = {
+    length: 5,
+    hitCoords: [],
+    coordinates: [],
+  };
+
+  newGame.placeShip(shipOne, [0, 0], 'x');
+  newGame.placeShip(shipTwo, [0, 2], 'x');
+
+  expect(newGame.gameboard[0][2]).toMatchObject(shipOne);
+  expect(shipTwo.coordinates[shipTwo.coordinates.length - 1][0]).toBeLessThan(10);
+  expect(shipTwo.coordinates[shipTwo.coordinates.length - 1][1]).toBeLessThan(10);
+});
