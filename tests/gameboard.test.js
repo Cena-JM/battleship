@@ -1,8 +1,33 @@
-import { gameboardFactory } from "../src/gameboardFactory";
+import gameboardFactory from '../src/gameboardFactory';
 
-let ship = {size: 6}
-// let shipCods = gameboardFactory();
-// shipCods.placeShip(ship);
+test('ships can be placed on board', () => {
+  const newGame = gameboardFactory();
+  const ship = {
+    length: 4,
+    hitCoords: [],
+    coordinates: [],
+  };
+  expect(newGame.placeShip(ship, [0, 0])).toContainEqual([0, 0]);
+});
+
 test('Game board correctly placed ship', () => {
-  expect(gameboardFactory.placeShip(ship)).toBe(true);
+  const newGame = gameboardFactory();
+  const ship = {
+    length: 3,
+    hitCoords: [],
+    coordinates: [],
+  };
+  newGame.placeShip(ship, [0, 0]);
+  expect(newGame.gameboard[0][0]).toMatchObject(ship);
+});
+
+test('ships can\'t be placed out of bounds', () => {
+  const newGame = gameboardFactory();
+  const ship = {
+    length: 4,
+    hitCoords: [],
+    coordinates: [],
+  };
+
+  expect(newGame.placeShip(ship, [0, 7], 'x')).not.toContainEqual([0, 7]);
 });
