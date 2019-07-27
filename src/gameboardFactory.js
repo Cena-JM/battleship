@@ -1,5 +1,4 @@
 import {
-  selectRandom,
   getCoodinates,
 } from './helper';
 
@@ -8,7 +7,18 @@ const gameboardFactory = () => {
   const gameboard = Array.from(Array(10), () => new Array(10));
 
   const receiveAttack = (x, y) => {
-    // if(gameboard[x][y])
+    let result;
+    if (gameboard[x][y] === '') {
+      gameboard[x][y] = 'Miss';
+      result = false;
+    }
+    if (typeof gameboard[x][y] === 'object') {
+      const ship = gameboard[x][y];
+      ship.hit([x, y]);
+      gameboard[x][y] = 'Hit';
+      result = true;
+    }
+    return result;
   };
 
   const placeShip = (ship, cods, direction = 'x') => {
