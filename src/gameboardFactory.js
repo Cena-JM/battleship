@@ -2,13 +2,16 @@ import {
   getCoodinates,
 } from './helper';
 
-
 const gameboardFactory = () => {
   const gameboard = Array.from(Array(10), () => new Array(10));
 
+  const ships = [];
+
+  const getShips = () => ships;
+
   const receiveAttack = (x, y) => {
     let result;
-    if (gameboard[x][y] === '') {
+    if (gameboard[x][y] === undefined) {
       gameboard[x][y] = 'Miss';
       result = false;
     }
@@ -19,6 +22,11 @@ const gameboardFactory = () => {
       result = true;
     }
     return result;
+  };
+
+  const isAllSunk = () => {
+    const sunk = ship => ship.isSunk();
+    return ships.every(sunk);
   };
 
   const placeShip = (ship, cods, direction = 'x') => {
@@ -38,6 +46,7 @@ const gameboardFactory = () => {
         shipcoords.push([cods[0], i]);
         if (i === xEnd - 1) {
           placed = true;
+          ships.push(ship);
         }
       }
     } else if (direction === 'y' && yEnd < 10) {
@@ -50,6 +59,7 @@ const gameboardFactory = () => {
         shipcoords.push([j, cods[1]]);
         if (j === yEnd - 1) {
           placed = true;
+          ships.push(ship);
         }
       }
     }
@@ -65,6 +75,8 @@ const gameboardFactory = () => {
     placeShip,
     gameboard,
     receiveAttack,
+    isAllSunk,
+    getShips,
   };
 };
 
