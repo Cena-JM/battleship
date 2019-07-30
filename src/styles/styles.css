@@ -28,5 +28,13 @@ body {
 }
 
 .ship {
-    background-color: blue;
+    background: #0000ff;
+}
+
+.hit {
+    background: #ff0000;
+}
+
+.miss {
+    background: #ff9900;
 }
