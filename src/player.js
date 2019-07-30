@@ -1,3 +1,6 @@
-const player = name => name;
+const player = (name, active) => ({
+  name,
+  active,
+});
 
 export default player;
