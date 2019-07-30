@@ -23,8 +23,13 @@ const domModule = (() => {
     message.textContent = msg;
   };
 
+  const disableCell = (x, y) => {
+    // disable
+  };
+
   return {
     renderBoard,
     displayMessage,
+    disableCell,
   };
 })();

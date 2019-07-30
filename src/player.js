@@ -1,6 +1,7 @@
-const player = (name, board, active) => ({
+const player = (name, board, moves, active) => ({
   name,
   board,
+  moves,
   active,
 });
 

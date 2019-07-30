@@ -5,7 +5,7 @@ const getCoodinates = () => {
   return coodinates;
 };
 
-const randomDirection = () => {
+const setDirection = () => {
   const dir = selectRandom(2) === 0 ? 'x' : 'y';
   return dir;
 };
@@ -13,5 +13,5 @@ const randomDirection = () => {
 export {
   selectRandom,
   getCoodinates,
-  randomDirection,
+  setDirection,
 };
