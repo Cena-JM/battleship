@@ -29,4 +29,9 @@ const gameModule = (() => {
   computerBoard.placeShip(destroyer2);
   computerBoard.placeShip(submarine2);
   computerBoard.placeShip(patrol2);
+
+  const human = player('human', gameboardFactory.gameboard, true);
+  const compter = player('computer', gameboardFactory.gameboard, false);
+
+  
 })();
