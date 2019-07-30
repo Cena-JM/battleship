@@ -3,7 +3,7 @@ body {
     text-align: center;
 }
 
-.container {
+#container {
     margin: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -12,11 +12,12 @@ body {
     justify-items: center;
 }
 
-.game-board {
+.human-board,
+.computer-board {
     display: grid;
     grid-auto-flow: row dense;
-    grid-template-columns: repeat(10,40px);
-    grid-template-rows: repeat(10,40px);
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
     border: 7px solid rgb(160, 160, 160);
     width: 400px;
     background-color: rgb(127, 96, 199);
@@ -24,4 +25,8 @@ body {
 
 .board-cell {
     border: 1px solid rgb(160, 160, 160);
+}
+
+.ship {
+    background-color: blue;
 }
