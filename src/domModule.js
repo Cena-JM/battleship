@@ -31,6 +31,10 @@ const domModule = (() => {
     [...boardCells].forEach((cell) => {
       cell.classList.add('inactive');
     });
+
+    reset.addEventListener('click', () => {
+      window.location.reload();
+    });
   };
 
   return {
