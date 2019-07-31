@@ -29,6 +29,16 @@ const gameboardFactory = () => {
     return ships.every(sunk);
   };
 
+  // const clearCells = (direction, x, y, z) => {
+  //   if (direction === 'x') {
+  //     while (x >= z) {
+  //       // console.log(`${i} i`)
+  //       gameboard[y][x] = '';
+  //       x -= 1;
+  //     }
+  //   }
+  // }
+
   const placeShip = (ship, cods, direction = 'x') => {
     let placed = false;
     const shipcoords = [];
@@ -40,6 +50,11 @@ const gameboardFactory = () => {
       // eslint-disable-next-line no-plusplus
       for (let i = cods[1]; i < xEnd; i++) {
         if (gameboard[cods[0]][i]) {
+          i -= 1;
+          while (i >= cods[1]) {
+            gameboard[cods[0]][i] = '';
+            i -= 1;
+          }
           break;
         }
         gameboard[cods[0]][i] = ship;
@@ -53,6 +68,11 @@ const gameboardFactory = () => {
       // eslint-disable-next-line no-plusplus
       for (let j = cods[0]; j < yEnd; j++) {
         if (gameboard[j][cods[1]]) {
+          j -= 1;
+          while (j >= cods[0]) {
+            gameboard[j][cods[1]] = '';
+            j -= 1;
+          }
           break;
         }
         gameboard[j][cods[1]] = ship;
