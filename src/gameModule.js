@@ -1,66 +1,22 @@
 import shipFactory from './shipFactory';
 import gameboardFactory from './gameboardFactory';
 import player from './player';
-import { displayMessage, disableCell } from './domModule';
-import { selectRandom, getCoodinates, setDirection } from './helper';
+import domModule from './domModule';
+import {
+  selectRandom,
+  getCoodinates,
+  setDirection
+} from './helper';
 
 const gameModule = (() => {
-  const carrier1 = shipFactory(5);
-  const carrier2 = shipFactory(5);
-  const battleship1 = shipFactory(4);
-  const battleship2 = shipFactory(4);
-  const destroyer1 = shipFactory(3);
-  const destroyer2 = shipFactory(3);
-  const submarine1 = shipFactory(3);
-  const submarine2 = shipFactory(3);
-  const patrol1 = shipFactory(2);
-  const patrol2 = shipFactory(2);
-
-  const humanBoard = gameboardFactory.gameboard;
-  humanBoard.placeShip(carrier1, selectRandom, setDirection);
-  humanBoard.placeShip(battleship1, selectRandom, setDirection);
-  humanBoard.placeShip(destroyer1, selectRandom, setDirection);
-  humanBoard.placeShip(submarine1, selectRandom, setDirection);
-  humanBoard.placeShip(patrol1, selectRandom, setDirection);
-
-  const computerBoard = gameboardFactory.gameboard;
-  computerBoard.placeShip(carrier2, selectRandom, setDirection);
-  computerBoard.placeShip(battleship2, selectRandom, setDirection);
-  computerBoard.placeShip(destroyer2, selectRandom, setDirection);
-  computerBoard.placeShip(submarine2, selectRandom, setDirection);
-  computerBoard.placeShip(patrol2, selectRandom, setDirection);
-
-  const human = player('human', humanBoard, [], true);
-  const computer = player('computer', computerBoard, [], false);
 
   const isWon = (currentPlayer) => {
-    currentPlayer.gameboard.isAllSunk();
+    currentPlayer.board.isAllSunk();
   };
 
-  const swapTurn = (currentPlayer, opponent) => {
-    currentPlayer.active = false;
+  const swapTurn = (attacker, opponent) => {
+    attacker.active = false;
     opponent.active = true;
-  };
-
-  const attack = (x, y, currentPlayer, opponent) => {
-    if (!currentPlayer.active) {
-      return;
-    }
-    const hitStatus = opponent.gameboard.receiveAttack(x, y);
-    // eslint-disable-next-line no-undef
-    const coord = document.querySelector(`#${opponent.name}-${x}${y}`);
-    if (hitStatus) {
-      coord.classList.add('hit');
-      if (isWon(opponent)) {
-        displayMessage(`${currentPlayer.name} has won!`);
-      } else if (currentPlayer.name === 'computer' && currentPlayer.active) {
-        computerPlay(currentPlayer, opponent);
-      }
-    } else {
-      coord.classList.add('miss');
-      swapTurn();
-    }
-    disableCell(x, y);
   };
 
   const computerPlay = (curr, opp) => {
@@ -73,11 +29,84 @@ const gameModule = (() => {
     }
   };
 
-  const gamePlay = () => {
-    if (human.active) {
-    //
+  const attack = (x, y, currentPlayer, opponent) => {
+    if (!currentPlayer.active) {
+      return;
+    }
+    console.log(opponent.board);
+    const hitStatus = opponent.board.receiveAttack(x, y);
+    // eslint-disable-next-line no-undef
+    const coord = document.querySelector(`#${opponent.name}-${x}${y}`);
+    if (hitStatus) {
+      coord.classList.add('hit');
+      if (isWon(opponent)) {
+        domModule.displayMessage(`${currentPlayer.name} has won!`);
+      } else if (currentPlayer.name === 'computer' && currentPlayer.active) {
+        computerPlay(currentPlayer, opponent);
+      }
     } else {
-      computerPlay();
+      coord.classList.add('miss');
+      swapTurn(currentPlayer, opponent);
+      computerPlay(opponent, currentPlayer);
+    }
+    domModule.disableCell(x, y);
+  };
+
+  const gamePlay = () => {
+
+    const carrier1 = shipFactory(5);
+    const carrier2 = shipFactory(5);
+    const battleship1 = shipFactory(4);
+    const battleship2 = shipFactory(4);
+    const destroyer1 = shipFactory(3);
+    const destroyer2 = shipFactory(3);
+    const submarine1 = shipFactory(3);
+    const submarine2 = shipFactory(3);
+    const patrol1 = shipFactory(2);
+    const patrol2 = shipFactory(2);
+
+    const humanBoard = gameboardFactory();
+    humanBoard.placeShip(carrier1, selectRandom(), setDirection());
+    humanBoard.placeShip(battleship1, selectRandom(), setDirection());
+    humanBoard.placeShip(destroyer1, selectRandom(), setDirection());
+    humanBoard.placeShip(submarine1, selectRandom(), setDirection());
+    humanBoard.placeShip(patrol1, selectRandom(), setDirection());
+
+    const computerBoard = gameboardFactory();
+    computerBoard.placeShip(carrier2, selectRandom(), setDirection());
+    computerBoard.placeShip(battleship2, selectRandom(), setDirection());
+    computerBoard.placeShip(destroyer2, selectRandom(), setDirection());
+    computerBoard.placeShip(submarine2, selectRandom(), setDirection());
+    computerBoard.placeShip(patrol2, selectRandom(), setDirection());
+
+    const human = player('human', humanBoard, null, true);
+    const computer = player('computer', computerBoard, [], false);
+    const parent = document.getElementById('container');
+
+    domModule.renderBoard(parent, human, human.board.gameboard);
+    domModule.renderBoard(parent, computer, computer.board.gameboard);
+
+    const chooseCell = (e) => {
+      const cell = e.target.id;
+      const xy = cell.substring(cell.length - 2, cell.length);
+      const coord = xy.split('');
+      const row = parseInt(coord[0], 10);
+      const col = parseInt(coord[1], 10);
+      attack(row, col, human, computer);
+    };
+
+    if (human.active) {
+      const compBoard = document.querySelector('.computer-board');
+      const computerCells = compBoard.children;
+      [...computerCells].forEach((cell) => {
+        cell.addEventListener('click', chooseCell);
+      });
     }
   };
+
+  return {
+    gamePlay,
+  };
 })();
+
+export default gameModule;
