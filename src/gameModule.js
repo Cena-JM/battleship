@@ -9,9 +9,15 @@ import {
 } from './helper';
 
 const gameModule = (() => {
-
-  const isWon = (currentPlayer) => {
-    currentPlayer.board.isAllSunk();
+  const isWon = (player) => {
+    let result;
+    if (player.board.isAllSunk()) {
+      player.active = false;
+      result = true;
+    } else {
+      result = false;
+    }
+    return result;
   };
 
   const swapTurn = (attacker, opponent) => {
@@ -34,14 +40,16 @@ const gameModule = (() => {
     if (!currentPlayer.active) {
       return;
     }
-    console.log(opponent.board);
+    // console.log(opponent.board);
     const hitStatus = opponent.board.receiveAttack(x, y);
     // eslint-disable-next-line no-undef
     const coord = document.querySelector(`#${opponent.name}-${x}${y}`);
     if (hitStatus) {
       coord.classList.add('hit');
+      console.log(isWon(opponent));
       if (isWon(opponent)) {
         domModule.displayMessage(`${currentPlayer.name} has won!`);
+        domModule.gameOver();
         return;
       }
       if (currentPlayer.name === 'computer' && currentPlayer.active) {
@@ -103,7 +111,9 @@ const gameModule = (() => {
       const compBoard = document.querySelector('.computer-board');
       const computerCells = compBoard.children;
       [...computerCells].forEach((cell) => {
-        cell.addEventListener('click', chooseCell, { once: true });
+        cell.addEventListener('click', chooseCell, {
+          once: true,
+        });
       });
     }
   };
