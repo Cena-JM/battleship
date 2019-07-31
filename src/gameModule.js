@@ -46,6 +46,10 @@ const gameModule = (() => {
     const coord = document.querySelector(`#${opponent.name}-${x}${y}`);
     if (hitStatus) {
       coord.classList.add('hit');
+      let x = 1;
+
+      x += 1;
+      console.log(x);
       console.log(isWon(opponent));
       if (isWon(opponent)) {
         domModule.displayMessage(`${currentPlayer.name} has won!`);

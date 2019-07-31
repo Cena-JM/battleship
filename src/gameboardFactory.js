@@ -29,15 +29,23 @@ const gameboardFactory = () => {
     return ships.every(sunk);
   };
 
-  // const clearCells = (direction, x, y, z) => {
-  //   if (direction === 'x') {
-  //     while (x >= z) {
-  //       // console.log(`${i} i`)
-  //       gameboard[y][x] = '';
-  //       x -= 1;
-  //     }
-  //   }
-  // }
+  const clearCells = (direction, x, y, z) => {
+    if (direction === 'x') {
+      let i = x;
+      i -= 1;
+      while (i >= z) {
+        gameboard[y][i] = NaN;
+        i -= 1;
+      }
+    } else if (direction === 'y') {
+      let j = y;
+      j -= 1;
+      while (j >= z) {
+        gameboard[j][x] = NaN;
+        j -= 1;
+      }
+    }
+  };
 
   const placeShip = (ship, cods, direction = 'x') => {
     let placed = false;
@@ -50,37 +58,33 @@ const gameboardFactory = () => {
       // eslint-disable-next-line no-plusplus
       for (let i = cods[1]; i < xEnd; i++) {
         if (gameboard[cods[0]][i]) {
-          i -= 1;
-          while (i >= cods[1]) {
-            gameboard[cods[0]][i] = '';
-            i -= 1;
-          }
+          clearCells('x', i, cods[0], cods[1]);
           break;
         }
         gameboard[cods[0]][i] = ship;
         shipcoords.push([cods[0], i]);
         if (i === xEnd - 1) {
           placed = true;
+          ship.direction = 'x';
           ships.push(ship);
         }
+        ship.position = cods[1];
       }
     } else if (direction === 'y' && yEnd < 10) {
       // eslint-disable-next-line no-plusplus
       for (let j = cods[0]; j < yEnd; j++) {
         if (gameboard[j][cods[1]]) {
-          j -= 1;
-          while (j >= cods[0]) {
-            gameboard[j][cods[1]] = '';
-            j -= 1;
-          }
+          clearCells('y', cods[1], j, cods[0]);
           break;
         }
         gameboard[j][cods[1]] = ship;
         shipcoords.push([j, cods[1]]);
         if (j === yEnd - 1) {
           placed = true;
+          ship.direction = 'y';
           ships.push(ship);
         }
+        ship.position = cods[0];
       }
     }
     if (!placed) {
@@ -88,6 +92,7 @@ const gameboardFactory = () => {
       placeShip(ship, newcords, direction);
     }
     ship.coordinates.push(...shipcoords);
+    console.log(ships);
     return shipcoords;
   };
 

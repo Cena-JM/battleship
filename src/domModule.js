@@ -11,6 +11,31 @@ const domModule = (() => {
         if (owner.name === 'human') {
           if (typeof matrix[i][j] === 'object') {
             cell.classList.add('ship');
+            console.log(matrix[i][j]);
+            if (matrix[i][j].direction === 'x') {
+              let spx;
+              if (j - matrix[i][j].position === 0) {
+                spx = 'spx-first';
+              } else if (j - matrix[i][j].position === matrix[i][j].length - 1) {
+                spx = 'spx-last';
+              } else {
+                spx = 'spx';
+              }
+              // (j - matrix[i][j].position === 0) ? spx = 'spx-first' : (j - matrix[i][j].position === matrix[i][j].length - 1) ? spx = 'spx-last' : spx = 'spx';
+              cell.classList.add('ship-x', `${spx}`);
+            } else {
+              let spy;
+              if (i - matrix[i][j].position === 0) {
+                spy = 'spy-first';
+              } else if (i - matrix[i][j].position === matrix[i][j].length - 1) {
+                spy = 'spy-last';
+              } else {
+                spy = 'spy';
+              }
+              // (i - matrix[i][j].position === 0) ? spy = 'spy-first' : (i - matrix[i][j].position === matrix[i][j].length - 1) ? spx = 'spy-last' : spx = 'spy';
+              cell.classList.add('ship-y');
+              cell.classList.add('ship-y', `${spy}`);
+            }
           }
         }
       }

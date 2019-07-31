@@ -1,4 +1,6 @@
 const shipFactory = (length) => {
+  const direction = '';
+  const position = '';
   const coordinates = [];
   const hitCoords = [];
   const hit = (coord) => {
@@ -13,6 +15,8 @@ const shipFactory = (length) => {
     hit,
     isSunk,
     hitCoords,
+    direction,
+    position,
   };
 };
 

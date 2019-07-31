@@ -20,11 +20,11 @@ body {
     grid-template-rows: repeat(10, 40px);
     border: 7px solid rgb(160, 160, 160);
     width: 400px;
-    background-color: rgb(127, 96, 199);
+    background: #fff;
 }
 
 .board-cell {
-    border: 1px solid rgb(160, 160, 160);
+    border: 3px solid rgb(160, 160, 160);
 }
 
 .ship {
@@ -57,18 +57,28 @@ body {
     display: none;
 }
 
-.s5 {
-    background: #571010;
+.ship-x {
+    border-left: none;
+    border-right: none;
 }
 
-.s4 {
-    background: #3a2506;
+.ship-y {
+    border-top: none;
+    border-bottom: none;
 }
 
-.s3 {
-    background: #73ff00;
+.spx-first {
+    border-left: 3px solid rgb(160, 160, 160);
 }
 
-.s2 {
-    background: #00c9a7;
+.spx-last {
+    border-right: 3px solid rgb(160, 160, 160);
+}
+
+.spy-first {
+    border-top: 3px solid rgb(160, 160, 160);
+}
+
+.spy-last {
+    border-bottom: 3px solid rgb(160, 160, 160);
 }
