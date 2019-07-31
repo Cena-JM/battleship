@@ -11,6 +11,11 @@ const domModule = (() => {
         if (owner.name === 'human') {
           if (typeof matrix[i][j] === 'object') {
             cell.classList.add('ship');
+            // console.log(matrix[i][j].length);
+            if (matrix[i][j].length === 5) { cell.classList.add('s5'); }
+            if (matrix[i][j].length === 4) { cell.classList.add('s4'); }
+            if (matrix[i][j].length === 3) { cell.classList.add('s3'); }
+            if (matrix[i][j].length === 2) { cell.classList.add('s2'); }
           }
         }
       }
@@ -23,14 +28,9 @@ const domModule = (() => {
     message.textContent = msg;
   };
 
-  const disableCell = (x, y) => {
-    // disable
-  };
-
   return {
     renderBoard,
     displayMessage,
-    disableCell,
   };
 })();
 

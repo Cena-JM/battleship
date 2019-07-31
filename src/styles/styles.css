@@ -38,3 +38,12 @@ body {
 .miss {
     background: #ff9900;
 }
+
+.clicked {
+    pointer-events: none;
+}
+
+.s5 { background: #571010; }
+.s4 { background: #3a2506; }
+.s3 { background: #73ff00; }
+.s2 { background: #00c9a7; }

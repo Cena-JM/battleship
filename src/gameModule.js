@@ -21,6 +21,7 @@ const gameModule = (() => {
 
   const computerPlay = (curr, opp) => {
     const shot = getCoodinates();
+    // console.log(`${curr.name}`);
     if (curr.moves.includes(shot)) {
       computerPlay(curr, opp);
     } else {
@@ -41,15 +42,18 @@ const gameModule = (() => {
       coord.classList.add('hit');
       if (isWon(opponent)) {
         domModule.displayMessage(`${currentPlayer.name} has won!`);
-      } else if (currentPlayer.name === 'computer' && currentPlayer.active) {
+        return;
+      }
+      if (currentPlayer.name === 'computer' && currentPlayer.active) {
         computerPlay(currentPlayer, opponent);
       }
     } else {
       coord.classList.add('miss');
       swapTurn(currentPlayer, opponent);
+    }
+    if (currentPlayer.name === 'human') {
       computerPlay(opponent, currentPlayer);
     }
-    domModule.disableCell(x, y);
   };
 
   const gamePlay = () => {
@@ -99,7 +103,7 @@ const gameModule = (() => {
       const compBoard = document.querySelector('.computer-board');
       const computerCells = compBoard.children;
       [...computerCells].forEach((cell) => {
-        cell.addEventListener('click', chooseCell);
+        cell.addEventListener('click', chooseCell, { once: true });
       });
     }
   };
