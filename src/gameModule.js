@@ -27,11 +27,14 @@ const gameModule = (() => {
 
   const computerPlay = (curr, opp) => {
     const shot = getCoodinates();
-    // console.log(`${curr.name}`);
-    if (curr.moves.includes(shot)) {
+    const st = shot.join('').toString();
+    if (curr.name !== 'computer') {
+      return;
+    }
+    if (curr.moves.includes(st)) {
       computerPlay(curr, opp);
     } else {
-      curr.moves.push(shot);
+      curr.moves.push(st);
       attack(shot[0], shot[1], curr, opp);
     }
   };
@@ -40,17 +43,12 @@ const gameModule = (() => {
     if (!currentPlayer.active) {
       return;
     }
-    // console.log(opponent.board);
     const hitStatus = opponent.board.receiveAttack(x, y);
     // eslint-disable-next-line no-undef
     const coord = document.querySelector(`#${opponent.name}-${x}${y}`);
     if (hitStatus) {
       coord.classList.add('hit');
-      let x = 1;
-
       x += 1;
-      console.log(x);
-      console.log(isWon(opponent));
       if (isWon(opponent)) {
         domModule.displayMessage(`${currentPlayer.name} has won!`);
         domModule.gameOver();
@@ -63,7 +61,7 @@ const gameModule = (() => {
       coord.classList.add('miss');
       swapTurn(currentPlayer, opponent);
     }
-    if (currentPlayer.name === 'human') {
+    if (currentPlayer.name === 'human' && !currentPlayer.active) {
       computerPlay(opponent, currentPlayer);
     }
   };

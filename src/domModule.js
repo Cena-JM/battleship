@@ -21,7 +21,6 @@ const domModule = (() => {
               } else {
                 spx = 'spx';
               }
-              // (j - matrix[i][j].position === 0) ? spx = 'spx-first' : (j - matrix[i][j].position === matrix[i][j].length - 1) ? spx = 'spx-last' : spx = 'spx';
               cell.classList.add('ship-x', `${spx}`);
             } else {
               let spy;
@@ -32,7 +31,6 @@ const domModule = (() => {
               } else {
                 spy = 'spy';
               }
-              // (i - matrix[i][j].position === 0) ? spy = 'spy-first' : (i - matrix[i][j].position === matrix[i][j].length - 1) ? spx = 'spy-last' : spx = 'spy';
               cell.classList.add('ship-y');
               cell.classList.add('ship-y', `${spy}`);
             }
