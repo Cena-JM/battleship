@@ -92,7 +92,6 @@ const gameboardFactory = () => {
       placeShip(ship, newcords, direction);
     }
     ship.coordinates.push(...shipcoords);
-    console.log(ships);
     return shipcoords;
   };
 

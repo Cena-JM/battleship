@@ -2,6 +2,17 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     background: #fff0f0;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: rgb(50, 0, 0);
+}
+
+#header {
+    padding: 14px 0;
+    background: rgb(94, 0, 0);
+    color: #fff;
+    font-size: 2em;
 }
 
 #container {
@@ -19,9 +30,11 @@ body {
     grid-auto-flow: row dense;
     grid-template-columns: repeat(10, 40px);
     grid-template-rows: repeat(10, 40px);
-    border: 7px solid rgb(94, 0, 0);
+    border: 1px solid rgb(94, 0, 0);
+    border-radius: 4px;
     width: 400px;
     background: #f0f0f0;
+    padding: 6px 6px;
 }
 
 .board-cell {
