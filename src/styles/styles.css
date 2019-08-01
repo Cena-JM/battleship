@@ -115,5 +115,7 @@ body {
 }
 
 #message {
+    padding: 20px;
+    font-size: 32px;
     color: #28cc28;
 }
