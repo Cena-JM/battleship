@@ -83,35 +83,47 @@ body {
 }
 
 .spx-first {
-    border-left: 3px solid rgb(136, 202, 228);
+    border-left: 6px solid #f0f0f0;
+    border-top: 6px solid #f0f0f0;
+    border-bottom: 6px solid #f0f0f0;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
 }
 
 .spx-last {
-    border-right: 3px solid rgb(136, 202, 228);
+    border-right: 6px solid #f0f0f0;
+    border-top: 6px solid #f0f0f0;
+    border-bottom: 6px solid #f0f0f0;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
 }
 
 .spy-first {
-    border-top: 3px solid rgb(136, 202, 228);
+    border-top: 6px solid #f0f0f0;
+    border-left: 6px solid #f0f0f0;
+    border-right: 6px solid #f0f0f0;
     border-top-right-radius: 50%;
     border-top-left-radius: 50%;
 }
 
 .spy-last {
-    border-bottom: 3px solid rgb(136, 202, 228);
+    border-bottom: 6px solid #f0f0f0;
+    border-left: 6px solid #f0f0f0;
+    border-right: 6px solid #f0f0f0;
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
 }
 
 .spx {
     border-radius: 0;
+    border-top: 3px solid #f0f0f0;
+    border-bottom: 3px solid #f0f0f0;
 }
 
 .spy {
     border-radius: 0;
+    border-left: 3px solid #f0f0f0;
+    border-right: 3px solid #f0f0f0;
 }
 
 #message {
